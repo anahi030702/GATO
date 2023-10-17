@@ -23,6 +23,8 @@
         </activity>
         <activity android:name=".second">
         </activity>
+        <activity android:name=".third">
+        </activity>
     </application>
 
 </manifest>

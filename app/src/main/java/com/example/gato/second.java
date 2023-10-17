@@ -1,5 +1,8 @@
 package com.example.gato;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +16,14 @@ public class second extends AppCompatActivity{
     private boolean jugadorX = true;
     private boolean perder = false;
     private TextView estadoTextView;
+    private Button finalizar;
+    public static String s;
+
+    public static String winner = "";
+
+    private static Button marc1;
+    private static Button marc2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +32,24 @@ public class second extends AppCompatActivity{
 
         gridLayout = findViewById(R.id.gridLayout);
         estadoTextView = findViewById(R.id.estadoTextView);
+        finalizar = findViewById(R.id.finalizar);
+        marc1 = findViewById(R.id.marcador1);
+        marc2 = findViewById(R.id.marcador2);
+
+        int marcadorPlayerO = 0;
+        int marcadorPlayerX = 0;
+        marc1.setText("PlayerO:     " + marcadorPlayerO);
+        marc2.setText("PlayerX:     " + marcadorPlayerX);
+        s = getIntent().getStringExtra(third.s);
+        if(s != null && s.equals("O")){
+            marcadorPlayerO = marcadorPlayerO + 1;
+            marc1.setText("PlayerO:     " + marcadorPlayerO );
+        }
+        else {
+            marcadorPlayerX = marcadorPlayerX + 1;
+            marc2.setText("PlayerX:     " + marcadorPlayerX );
+        }
+
 
         for (int i = 0; i < 9; i++) {
             String buttonID = "button" + (i + 1);
@@ -28,6 +57,8 @@ public class second extends AppCompatActivity{
             buttons[i] = findViewById(resID);
         }
     }
+
+
 
     public void clickencelda(View view) {
         Button button = (Button) view;
@@ -41,17 +72,27 @@ public class second extends AppCompatActivity{
             jugadorX = !jugadorX;
 
             if (ganar()) {
-                String winner = jugadorX ? "O" : "X";
+                winner = jugadorX ? "O" : "X";
                 estadoTextView.setText("¡" + winner + " gana!");
                 estadoTextView.setVisibility(View.VISIBLE);
+                finalizar.setVisibility(View.VISIBLE);
                 perder = true;
             } else if (tablallena()) {
+                winner = "EMPATE";
                 estadoTextView.setText("Empate");
                 estadoTextView.setVisibility(View.VISIBLE);
+                finalizar.setVisibility(View.VISIBLE);
                 perder = true;
             }
         }
     }
+
+    public void finalizar(View view) {
+        Intent intent = new Intent(this, third.class);
+        intent.putExtra(second.winner, winner);
+        startActivity(intent);
+    }
+
 
     private boolean ganar() {
         String[] board = new String[9];

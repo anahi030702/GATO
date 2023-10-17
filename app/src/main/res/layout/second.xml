@@ -9,6 +9,34 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="-170dp"
+        android:layout_marginBottom="130dp"
+        android:layout_gravity="center_horizontal"
+
+        >
+    <Button
+        android:id="@+id/marcador1"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:background="@color/black"
+        android:layout_marginRight="25dp"
+        android:textSize="23dp"
+         />
+
+    <Button
+        android:id="@+id/marcador2"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:background="@color/black"
+        android:textSize="22dp"
+        />
+
+    </LinearLayout>
+
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
@@ -119,4 +147,20 @@
         android:textSize="24sp"
         android:text=""
         android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/finalizar"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-500dp"
+        android:layout_marginTop="80dp"
+        android:text="FINALIZAR"
+        android:textSize="30dp"
+        android:background="@color/black"
+        android:visibility="gone"
+        android:onClick="finalizar"
+        />
+
+
 </LinearLayout>
