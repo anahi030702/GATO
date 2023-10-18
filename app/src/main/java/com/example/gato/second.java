@@ -56,6 +56,8 @@ public class second extends AppCompatActivity{
             } else if (s.equals("Jugador X")) {
                 marcadorPlayerX++;
             }
+
+
         }
 
         marc1.setText("PlayerO:  " + marcadorPlayerO);
@@ -87,8 +89,10 @@ public class second extends AppCompatActivity{
                 if(winner == 'O'){
                     winner2 = "Jugador O";
                 }
-                else {
+                else if(winner == 'X'){
                     winner2 = "Jugador X";
+                }
+                else {
                 }
                 estadoTextView.setText("¡" + winner + " gana!");
                 estadoTextView.setVisibility(View.VISIBLE);
@@ -96,6 +100,7 @@ public class second extends AppCompatActivity{
                 perder = true;
             } else if (tablallena()) {
                 winner = 'E';
+                winner2 = "Empate";
                 estadoTextView.setText("Empate");
                 estadoTextView.setVisibility(View.VISIBLE);
                 finalizar.setVisibility(View.VISIBLE);
