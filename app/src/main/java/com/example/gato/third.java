@@ -27,7 +27,7 @@ public class third extends AppCompatActivity{
 
 
         if (s != null) {
-            cuadro.setText("RESULTADO: " + s);
+            cuadro.setText("Ganador: " + s);
         }
 
 
