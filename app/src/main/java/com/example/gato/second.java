@@ -18,11 +18,17 @@ public class second extends AppCompatActivity{
     private TextView estadoTextView;
     private Button finalizar;
     public static String s;
+    public static String marcadorO;
+    public static String marcadorx;
 
-    public static String winner = "";
+    public static char winner;
 
     private static Button marc1;
     private static Button marc2;
+
+    public static int marcadorPlayerO = 0;
+    public static int marcadorPlayerX = 0;
+    public static String winner2;
 
 
     @Override
@@ -36,19 +42,24 @@ public class second extends AppCompatActivity{
         marc1 = findViewById(R.id.marcador1);
         marc2 = findViewById(R.id.marcador2);
 
-        int marcadorPlayerO = 0;
-        int marcadorPlayerX = 0;
-        marc1.setText("PlayerO:     " + marcadorPlayerO);
-        marc2.setText("PlayerX:     " + marcadorPlayerX);
+
+
+
+        marcadorO = getIntent().getStringExtra(third.marcadorO);
+        marcadorx = getIntent().getStringExtra(third.marcadorX);
+
+
         s = getIntent().getStringExtra(third.s);
-        if(s != null && s.equals("O")){
-            marcadorPlayerO = marcadorPlayerO + 1;
-            marc1.setText("PlayerO:     " + marcadorPlayerO );
+        if (s != null) {
+            if (s.equals("jugador O")) {
+                marcadorPlayerO++;
+            } else if (s.equals("jugador X")) {
+                marcadorPlayerX++;
+            }
         }
-        else {
-            marcadorPlayerX = marcadorPlayerX + 1;
-            marc2.setText("PlayerX:     " + marcadorPlayerX );
-        }
+
+        marc1.setText("PlayerO:  " + marcadorPlayerO);
+        marc2.setText("PlayerX:  " + marcadorPlayerX);
 
 
         for (int i = 0; i < 9; i++) {
@@ -72,13 +83,19 @@ public class second extends AppCompatActivity{
             jugadorX = !jugadorX;
 
             if (ganar()) {
-                winner = jugadorX ? "O" : "X";
+                winner = jugadorX ? 'O' : 'X';
+                if(winner == 'O'){
+                    winner2 = "jugador O";
+                }
+                else {
+                    winner2 = "jugador X";
+                }
                 estadoTextView.setText("¡" + winner + " gana!");
                 estadoTextView.setVisibility(View.VISIBLE);
                 finalizar.setVisibility(View.VISIBLE);
                 perder = true;
             } else if (tablallena()) {
-                winner = "EMPATE";
+                winner = 'E';
                 estadoTextView.setText("Empate");
                 estadoTextView.setVisibility(View.VISIBLE);
                 finalizar.setVisibility(View.VISIBLE);
@@ -89,7 +106,9 @@ public class second extends AppCompatActivity{
 
     public void finalizar(View view) {
         Intent intent = new Intent(this, third.class);
-        intent.putExtra(second.winner, winner);
+        intent.putExtra(second.winner2, winner2);
+        intent.putExtra(String.valueOf(second.marcadorPlayerO), marcadorPlayerO);
+        intent.putExtra(String.valueOf(second.marcadorPlayerX), marcadorPlayerX);
         startActivity(intent);
     }
 
