@@ -51,13 +51,11 @@ public class second extends AppCompatActivity{
 
         s = getIntent().getStringExtra(third.s);
         if (s != null) {
-            if (s.equals("Jugador O")) {
+            if (s.equals("jugador O")) {
                 marcadorPlayerO++;
-            } else if (s.equals("Jugador X")) {
+            } else if (s.equals("jugador X")) {
                 marcadorPlayerX++;
             }
-
-
         }
 
         marc1.setText("PlayerO:  " + marcadorPlayerO);
@@ -87,12 +85,10 @@ public class second extends AppCompatActivity{
             if (ganar()) {
                 winner = jugadorX ? 'O' : 'X';
                 if(winner == 'O'){
-                    winner2 = "Jugador O";
-                }
-                else if(winner == 'X'){
-                    winner2 = "Jugador X";
+                    winner2 = "jugador O";
                 }
                 else {
+                    winner2 = "jugador X";
                 }
                 estadoTextView.setText("¡" + winner + " gana!");
                 estadoTextView.setVisibility(View.VISIBLE);
@@ -100,7 +96,6 @@ public class second extends AppCompatActivity{
                 perder = true;
             } else if (tablallena()) {
                 winner = 'E';
-                winner2 = "Empate";
                 estadoTextView.setText("Empate");
                 estadoTextView.setVisibility(View.VISIBLE);
                 finalizar.setVisibility(View.VISIBLE);

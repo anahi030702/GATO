@@ -27,12 +27,7 @@ public class third extends AppCompatActivity{
 
 
         if (s != null) {
-            if(s.equals("Jugador O") || s.equals("Jugador X")) {
-                cuadro.setText("Ganador: " + s);
-            }
-            else if(s.equals("Empate")){
-                cuadro.setText("Resultado: " + s);
-            }
+            cuadro.setText("RESULTADO: " + s);
         }
 
 
